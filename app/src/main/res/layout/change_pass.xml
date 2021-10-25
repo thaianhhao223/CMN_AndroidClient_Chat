@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mint_green"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="248dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/logo" />
+
+        <EditText
+            android:id="@+id/edtOldpass"
+            android:layout_width="324dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/shape"
+            android:ems="10"
+            android:hint=" Oldpass"
+            android:textStyle="bold"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/edtNewpass"
+            android:layout_width="324dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/shape"
+            android:ems="10"
+            android:hint=" Newpass"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:inputType="textPassword"/>
+        <EditText
+            android:id="@+id/edtPassAgain"
+            android:layout_width="324dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/shape"
+            android:ems="10"
+            android:hint=" Confirm Passwork"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:inputType="textPassword"/>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="200dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="20dp"
+            android:text="Đổi mật khẩu"
+            android:textColor="@color/black"
+            android:background="@drawable/botron_button"
+            app:backgroundTint="#78A6C8" />
+
+        <TextView
+            android:id="@+id/tvCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Quay lại"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+</LinearLayout>
