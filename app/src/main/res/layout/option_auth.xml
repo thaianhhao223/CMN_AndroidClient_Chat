@@ -37,7 +37,7 @@
             android:src="@drawable/ic_change_name_fr"
             android:layout_marginLeft="15dp"/>
         <TextView
-            android:id="@+id/tvInforSelf"
+            android:id="@+id/tvInforAuth"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:textStyle="bold"
@@ -100,7 +100,7 @@
             android:src="@drawable/ic_logout"
             android:layout_marginLeft="15dp"/>
         <TextView
-            android:id="@+id/tvLogout"
+            android:id="@+id/tvAuthLogout"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:textStyle="bold"

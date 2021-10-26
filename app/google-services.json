@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "996663908101",
+    "project_id": "cnmnhom2ungdungchat",
+    "storage_bucket": "cnmnhom2ungdungchat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996663908101:android:1213eaec8303892240c96c",
+        "android_client_info": {
+          "package_name": "com.example.chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "996663908101-e1rod3mv5db5pvd3h5bi815lb89e3knu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgwH5XI1Zae5zTWLFaVJo8crvFTh7GjsQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "996663908101-e1rod3mv5db5pvd3h5bi815lb89e3knu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

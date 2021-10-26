@@ -7,68 +7,86 @@
     android:background="@drawable/mint_green"
     android:orientation="vertical"
     >
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp"
         android:layout_gravity="center"
         android:gravity="center"
-        >
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="248dp"
+            android:layout_width="367dp"
+            android:layout_height="158dp"
             android:layout_marginTop="30dp"
             android:src="@drawable/logo" />
 
         <EditText
-            android:id="@+id/edtName"
+            android:id="@+id/edtFullNameSignUp"
             android:layout_width="324dp"
             android:layout_height="55dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/shape"
             android:ems="10"
             android:hint=" Họ và tên "
-            android:textStyle="bold"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hintTextColor"
+            android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/edtDateOfBirth"
+            android:id="@+id/edtBirthdaySignUP"
             android:layout_width="324dp"
             android:layout_height="55dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/shape"
             android:ems="10"
             android:hint=" Ngày sinh"
-            android:textStyle="bold"
+            android:inputType="date"
             android:textColor="@color/black"
-            android:inputType="date"/>
+            android:textColorHint="@color/hintTextColor"
+            android:textStyle="bold" />
+
         <EditText
-            android:id="@+id/edtEmail"
+            android:id="@+id/edtPhoneNumberLogin"
             android:layout_width="324dp"
             android:layout_height="55dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/shape"
             android:ems="10"
-            android:hint=" Email"
-            android:textStyle="bold"
+            android:hint="Số điện thoại"
+            android:inputType="textEmailAddress"
             android:textColor="@color/black"
-            android:inputType="textEmailAddress"/>
+            android:textColorHint="@color/hintTextColor"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtAddressSignUp"
+            android:layout_width="324dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/shape"
+            android:ems="10"
+            android:hint="Địa chỉ"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hintTextColor"
+            android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnComfirmInforUser"
             android:layout_width="200dp"
             android:layout_height="55dp"
             android:layout_marginTop="20dp"
+            android:background="@drawable/botron_button"
             android:text="Xác nhận"
-            android:textSize="16sp"
             android:textColor="@color/black"
-            app:backgroundTint="#78A6C8"
-            android:background="@drawable/botron_button"/>
+            android:textSize="16sp"
+            app:backgroundTint="#78A6C8" />
 
         <TextView
-            android:id="@+id/tvCancel"
+            android:id="@+id/tvBackScreenSignUpStep2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
