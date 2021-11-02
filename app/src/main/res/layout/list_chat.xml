@@ -20,7 +20,7 @@
         </SearchView>
 
         <ImageView
-            android:id="@+id/btnAuthOption"
+            android:id="@+id/imgViewAddFriend"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/ic_menu" />
@@ -47,23 +47,26 @@
         android:padding="10dp">
 
         <ImageView
-            android:id="@+id/idChatLight"
+            android:id="@+id/imgViewContactChatRegular"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
+            android:foregroundGravity="center"
             android:src="@drawable/ic_chat_solid" />
 
         <ImageView
-            android:id="@+id/idFriendSolid"
+            android:id="@+id/imgViewManagerContactregular"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_marginLeft="30dp"
+            android:foregroundGravity="center"
             android:src="@drawable/ic_friends_light" />
 
         <ImageView
             android:id="@+id/idPersonLight"
-            android:layout_width="wrap_content"
+            android:layout_width="86dp"
             android:layout_height="35dp"
             android:layout_marginLeft="70dp"
+            android:foregroundGravity="center"
             android:src="@drawable/ic_person_light" />
     </LinearLayout>
 </LinearLayout>

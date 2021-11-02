@@ -23,41 +23,46 @@
             android:src="@drawable/logo" />
 
         <EditText
-            android:id="@+id/edtOldpass"
+            android:id="@+id/edtChangePassOldpass"
             android:layout_width="324dp"
             android:layout_height="55dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/shape"
             android:ems="10"
-            android:hint=" Oldpass"
-            android:textStyle="bold"
-            android:inputType="textPassword" />
+            android:hint="Mật khẩu cũ"
+            android:inputType="textPassword"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hintTextColor"
+            android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/edtNewpass"
+            android:id="@+id/edtChangePassNewpass"
             android:layout_width="324dp"
             android:layout_height="55dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/shape"
             android:ems="10"
-            android:hint=" Newpass"
-            android:textStyle="bold"
+            android:hint="Mật khẩu mới"
+            android:inputType="textPassword"
             android:textColor="@color/black"
-            android:inputType="textPassword"/>
+            android:textColorHint="@color/hintTextColor"
+            android:textStyle="bold" />
+
         <EditText
-            android:id="@+id/edtPassAgain"
+            android:id="@+id/edtChangePassPassAgain"
             android:layout_width="324dp"
             android:layout_height="55dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/shape"
             android:ems="10"
-            android:hint=" Confirm Passwork"
-            android:textStyle="bold"
+            android:hint="Xác nhận mật khẩu mới"
+            android:inputType="textPassword"
             android:textColor="@color/black"
-            android:inputType="textPassword"/>
+            android:textColorHint="@color/hintTextColor"
+            android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btnComfirmInforUser"
+            android:id="@+id/btnChangePassComfirm"
             android:layout_width="200dp"
             android:layout_height="55dp"
             android:layout_marginTop="20dp"
@@ -67,7 +72,7 @@
             app:backgroundTint="#78A6C8" />
 
         <TextView
-            android:id="@+id/tvBackScreenSignUpStep1"
+            android:id="@+id/tvBackScreenChangePass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"

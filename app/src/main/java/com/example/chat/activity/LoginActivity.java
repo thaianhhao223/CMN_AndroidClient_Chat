@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,22 +25,31 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        String email, password;
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
-        if (auth.getCurrentUser() != null) {
+        if (auth.getCurrentUser() != null && auth.getCurrentUser().isEmailVerified() == true) {
             startActivity(new Intent(LoginActivity.this, ManageChatActivity.class));
             finish();
         }
         edtEmailSignin = findViewById(R.id.edtPhoneNumberLogin);
         edtPasswordSignin = findViewById(R.id.edtPasswordLogin);
 
-        btnLogin = findViewById(R.id.btnComfirmInforUser);
+        btnLogin = findViewById(R.id.btnLogin);
 
         tvSignUp = findViewById(R.id.tvSign_up);
+
+        Intent intent = getIntent();
+        email = intent.getStringExtra("email");
+        password = intent.getStringExtra("password");
+        if (email != null)
+            edtEmailSignin.setText(email);
+        if (password != null)
+            edtPasswordSignin.setText(password);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,12 +90,11 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        tvSignUp.setOnTouchListener(new View.OnTouchListener() {
+        tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
+            public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, SignupStep1Activity.class);
                 startActivity(intent);
-                return false;
             }
         });
 
