@@ -27,6 +27,13 @@ public class OptionAuthActivity extends AppCompatActivity {
         imgViewOptionAuthBack = findViewById(R.id.imgViewOptionAuthBack);
 
 
+        tvInforApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OptionAuthActivity.this, InforApplicationActivity.class);
+                startActivity(intent);
+            }
+        });
         tvChangePass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

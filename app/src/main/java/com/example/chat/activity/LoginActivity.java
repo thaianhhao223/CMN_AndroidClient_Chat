@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                                 // signed in user can be handled in the listener.
                                 if (!task.isSuccessful()) {
                                     // there was an error
-                                    Toast.makeText(getApplicationContext(),"Đăng nhập thất bại",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(),"Sai tài khoản hoặc mật khẩu!",Toast.LENGTH_LONG).show();
                                 } else {
                                     if (auth.getCurrentUser().isEmailVerified()){
                                         Intent intent = new Intent(LoginActivity.this, ManageChatActivity.class);
