@@ -60,9 +60,6 @@ public class SignupStep3Activity extends AppCompatActivity {
         btnSignUpDone = findViewById(R.id.btnSignUpDone);
 
         user.sendEmailVerification();
-        CreateNewUser(user.getUid().toString(), fullname, birthday, phonenumber, address);
-
-
 
         btnResendEmail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,41 +92,5 @@ public class SignupStep3Activity extends AppCompatActivity {
             }
         });
     }
-    private void CreateNewUser(String idUser, String fullname, String birthday, String phonenumber, String address){
-        // Instantiate the RequestQueue.
-        String[] replacebirthday = birthday.split("/");
-        String chuoiNamSinh = replacebirthday[2] +"-"+ replacebirthday[1]+"-"+ replacebirthday[0];
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://192.168.1.107:3000/Users?id_user="+idUser+"&name="+fullname+"&birthday="+chuoiNamSinh+"&phonenumber="+phonenumber+"&address="+address;
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try{
-                            JSONObject object = new JSONObject(response);
 
-                            if(object.getString("message").equals("Insert success!")){
-                                Toast.makeText(SignupStep3Activity.this, "Thêm người dùng thành công", Toast.LENGTH_SHORT).show();
-                            }else{
-                                Log.d("Troi dat oi",object.toString());
-                                Toast.makeText(SignupStep3Activity.this, "respone has error", Toast.LENGTH_SHORT).show();
-                            }
-
-                        }catch (JSONException e){
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(SignupStep3Activity.this, "Volley Error", Toast.LENGTH_SHORT).show();
-                Log.d("Volley Erro:", error.toString());
-            }
-        });
-
-        Log.d("stringRequest",stringRequest.toString());
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
-    }
 }
