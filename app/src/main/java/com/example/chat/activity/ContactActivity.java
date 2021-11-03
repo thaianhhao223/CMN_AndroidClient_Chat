@@ -117,7 +117,7 @@ public class ContactActivity extends AppCompatActivity {
                                 tvNumberRequestAddfriend.setText(count);
                                 Log.d("Count request addfr:", object.getString("count"));
                             }else{
-                                Toast.makeText(ContactActivity.this, "respone has error", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ContactActivity.this, "Đếm sờ lời mời thất bại", Toast.LENGTH_SHORT).show();
                             }
                         }catch (JSONException e){
                             e.printStackTrace();

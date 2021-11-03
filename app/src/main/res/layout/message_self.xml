@@ -40,7 +40,7 @@
         android:orientation="horizontal">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcvScreenChat"
+            android:id="@+id/rcvConversationPersonal"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </androidx.recyclerview.widget.RecyclerView>
@@ -52,11 +52,13 @@
         android:layout_weight="0.4"
         android:orientation="horizontal"
         android:gravity="bottom">
+
         <ImageView
+            android:id="@+id/imgViewConversationPersonalSend"
             android:layout_width="32dp"
             android:layout_height="48dp"
-            android:src="@drawable/ic_back"
-            android:layout_marginLeft="5dp"/>
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/ic_back" />
         <ImageView
             android:layout_width="32dp"
             android:layout_height="48dp"
@@ -68,7 +70,7 @@
             android:src="@drawable/ic_pass"
             android:layout_marginLeft="5dp"/>
     <EditText
-        android:id="@+id/edtMess"
+        android:id="@+id/edtSendMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/botron_button"
