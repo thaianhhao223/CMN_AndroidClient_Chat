@@ -28,10 +28,11 @@
             />
         <ImageView
             android:id="@+id/imgMenu"
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_menu"
-            android:layout_marginLeft="60dp"/>
+            android:src="@drawable/ic_menu2"
+            android:layout_marginLeft="60dp"
+            android:layout_gravity="center"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,34 +50,38 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.4"
+        android:layout_marginBottom="5dp"
         android:gravity="bottom"
         android:orientation="horizontal">
         <ImageView
+            android:id="@+id/imgSendFile"
             android:layout_width="32dp"
             android:layout_height="48dp"
-            android:src="@drawable/ic_back"
+            android:src="@drawable/ic_url"
+            android:layout_marginLeft="5dp" />
+        <ImageView
+            android:id="@+id/imgSendImg"
+            android:layout_width="32dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_img"
             android:layout_marginLeft="5dp"/>
         <ImageView
+            android:id="@+id/imgSendEmoji"
             android:layout_width="32dp"
             android:layout_height="48dp"
-            android:src="@drawable/ic_user"
-            android:layout_marginLeft="5dp"/>
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_pass"
+            android:src="@drawable/ic_emoji"
             android:layout_marginLeft="5dp"/>
         <EditText
             android:id="@+id/edtMess"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/botron_button"
+            android:layout_height="45dp"
+            android:background="@drawable/botron_mess"
             android:layout_marginLeft="5dp"
             android:textSize="24dp"
-            android:hint="  Nhập tin nhắn"
+            android:hint="Nhập tin nhắn"
+            android:textColorHint="@color/hintTextColor"
             android:textColor="@color/black"
-            android:textStyle="bold"
+            android:textStyle="normal"
             android:inputType="text"
             />
     </LinearLayout>

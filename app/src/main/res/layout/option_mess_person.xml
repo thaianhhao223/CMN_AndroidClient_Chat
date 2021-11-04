@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAFDFD"
+    android:background="@drawable/mint_green"
     android:orientation="vertical"
     >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:background="#C4C4C4">
+        android:background="#78A6C8">
         <ImageView
             android:id="@+id/imgBack"
             android:layout_width="35dp"
@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="320dp"
             android:layout_height="40dp"
-            android:textColor="@color/black"
+            android:textColor="#FFFFFF"
             android:textAlignment="center"
             android:textSize="25dp"
             android:text="Tùy chọn"
@@ -40,7 +40,7 @@
             android:id="@+id/tvChangeNameFr"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:textStyle="bold"
+            android:textStyle="normal"
             android:textColor="@color/black"
             android:text="Thay đổi tên gợi nhớ"
             android:textSize="28dp"
@@ -61,7 +61,7 @@
             android:id="@+id/tvDeleteMess"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:textStyle="bold"
+            android:textStyle="normal"
             android:textColor="@color/black"
             android:text="Xóa cuộc trò chuyện"
             android:textSize="28dp"
@@ -82,7 +82,7 @@
             android:id="@+id/tvDeleteFr"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:textStyle="bold"
+            android:textStyle="normal"
             android:textColor="@color/black"
             android:text="Xóa bạn"
             android:textSize="28dp"

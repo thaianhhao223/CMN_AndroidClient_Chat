@@ -21,6 +21,14 @@
             android:layout_height="248dp"
             android:layout_marginTop="30dp"
             android:src="@drawable/logo" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nhập email của tài khoản:"
+            android:textStyle="normal"
+            android:textColor="@color/black"
+            android:textSize="21dp"
+            android:layout_marginBottom="5dp"/>
         <LinearLayout
             android:layout_width="300dp"
             android:layout_height="45dp"
@@ -29,7 +37,7 @@
             android:gravity="center"
             android:orientation="horizontal">
             <EditText
-                android:id="@+id/edtEmailSignUp"
+                android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:ems="10"
@@ -38,57 +46,17 @@
                 android:inputType="textEmailAddress"
                 android:textColor="#000000"
                 android:textColorHint="@color/hintTextColor"
-                android:textStyle="normal" />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="300dp"
-            android:layout_height="45dp"
-            android:layout_marginHorizontal="24dp"
-            android:background="@drawable/shape"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-            <EditText
-                android:id="@+id/edtPassSignUp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:ems="10"
-                android:layout_marginLeft="5dp"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:textColor="@color/black"
-                android:textColorHint="#BDB8B8"
-                android:textStyle="normal" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="300dp"
-            android:layout_height="45dp"
-            android:layout_marginHorizontal="24dp"
-            android:background="@drawable/shape"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-            <EditText
-                android:id="@+id/edtComfirmPassSignUp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:ems="10"
-                android:layout_marginLeft="5dp"
-                android:hint="Confirm Password"
-                android:inputType="textPassword"
-                android:textColor="@color/black"
-                android:textColorHint="@color/hintTextColor"
-                android:textStyle="normal" />
+                android:textStyle="bold" />
         </LinearLayout>
         <Button
             android:id="@+id/btnComfirmInforUser"
-            android:layout_width="148dp"
-            android:layout_height="55dp"
+            android:layout_width="114dp"
+            android:layout_height="40dp"
             android:layout_marginTop="20dp"
-            android:textSize="20sp"
-            android:text="Đăng kí"
+            android:textSize="18sp"
+            android:textStyle="normal"
             android:textAllCaps="false"
+            android:text="Nhận OTP"
             android:textColor="@color/black"
             app:backgroundTint="#78A6C8"
             android:background="@drawable/botron_button"/>

@@ -17,7 +17,7 @@
             android:id="@+id/imgBack"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@drawable/ic_back"/>
+            android:src="@drawable/ic_back2"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             android:id="@+id/imgAvtFr"
             android:layout_width="228dp"
             android:layout_height="228dp"
-            android:src="@drawable/haocute"
+            android:src="@drawable/ic_exp_avt"
             android:layout_gravity="center" />
 
     </LinearLayout>
@@ -50,7 +50,7 @@
                 android:textStyle="normal"
                 android:textColor="@color/black"
                 android:text="Họ và tên:"
-                android:textSize="28dp"
+                android:textSize="25dp"
                 android:layout_marginLeft="20dp"
                 />
             <TextView
@@ -60,7 +60,7 @@
                 android:textStyle="normal"
                 android:textColor="@color/black"
                 android:text="Nguyễn Văn A"
-                android:textSize="28dp"
+                android:textSize="25dp"
                 android:layout_marginLeft="5dp"
                 />
         </LinearLayout>
@@ -75,7 +75,7 @@
                 android:textStyle="normal"
                 android:textColor="@color/black"
                 android:text="Ngày sinh:"
-                android:textSize="28dp"
+                android:textSize="25dp"
                 android:layout_marginLeft="20dp"
                 />
             <TextView
@@ -85,7 +85,7 @@
                 android:textStyle="normal"
                 android:textColor="@color/black"
                 android:text="10/11/2000"
-                android:textSize="28dp"
+                android:textSize="25dp"
                 android:layout_marginLeft="5dp"
                 />
         </LinearLayout>
@@ -100,7 +100,7 @@
                 android:textStyle="normal"
                 android:textColor="@color/black"
                 android:text="Địa chỉ: "
-                android:textSize="28dp"
+                android:textSize="25dp"
                 android:layout_marginLeft="20dp"
                 />
             <TextView
@@ -110,17 +110,19 @@
                 android:textStyle="normal"
                 android:textColor="@color/black"
                 android:text="Phú Nhuận,HCM"
-                android:textSize="28dp"
+                android:textSize="25dp"
                 android:layout_marginLeft="5dp" />
         </LinearLayout>
     </LinearLayout>
     <Button
         android:id="@+id/btnAddFr2"
-        android:layout_width="wrap_content"
+        android:layout_width="284dp"
         android:layout_height="60dp"
-        app:backgroundTint="#78A6C8"
+        android:background="#78A6C8"
         android:layout_gravity="center"
         android:layout_marginBottom="20dp"
         android:textStyle="normal"
+        android:textSize="20dp"
+        android:textAllCaps="false"
         android:text="Đã gửi lời mời kết bạn" />
 </LinearLayout>

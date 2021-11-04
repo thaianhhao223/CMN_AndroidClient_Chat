@@ -17,7 +17,7 @@
             android:id="@+id/imgBack"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@drawable/ic_back"/>
+            android:src="@drawable/ic_back2"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             android:id="@+id/imgAvtFr"
             android:layout_width="228dp"
             android:layout_height="228dp"
-            android:src="@drawable/haocute"
+            android:src="@drawable/ic_exp_avt"
             android:layout_gravity="center" />
 
     </LinearLayout>
@@ -50,7 +50,7 @@
                 android:textStyle="normal"
                 android:textColor="@color/black"
                 android:text="Họ và tên:"
-                android:textSize="28dp"
+                android:textSize="25dp"
                 android:layout_marginLeft="20dp"
                 />
             <TextView
@@ -60,7 +60,7 @@
                 android:textStyle="normal"
                 android:textColor="@color/black"
                 android:text="Nguyễn Văn A"
-                android:textSize="28dp"
+                android:textSize="25dp"
                 android:layout_marginLeft="5dp"
                 />
         </LinearLayout>
@@ -75,7 +75,7 @@
                 android:textStyle="normal"
                 android:textColor="@color/black"
                 android:text="Ngày sinh:"
-                android:textSize="28dp"
+                android:textSize="25dp"
                 android:layout_marginLeft="20dp"
                 />
             <TextView
@@ -85,7 +85,7 @@
                 android:textStyle="normal"
                 android:textColor="@color/black"
                 android:text="10/11/2000"
-                android:textSize="28dp"
+                android:textSize="25dp"
                 android:layout_marginLeft="5dp"
                 />
         </LinearLayout>
@@ -100,7 +100,7 @@
                 android:textStyle="normal"
                 android:textColor="@color/black"
                 android:text="Địa chỉ: "
-                android:textSize="28dp"
+                android:textSize="25dp"
                 android:layout_marginLeft="20dp"
                 />
             <TextView
@@ -110,7 +110,7 @@
                 android:textStyle="normal"
                 android:textColor="@color/black"
                 android:text="Phú Nhuận,HCM"
-                android:textSize="28dp"
+                android:textSize="25dp"
                 android:layout_marginLeft="5dp" />
         </LinearLayout>
     </LinearLayout>
@@ -120,19 +120,46 @@
         android:orientation="horizontal"
         android:layout_marginBottom="20dp"
         android:gravity="center">
-        <Button
-            android:id="@+id/btnAccept"
-            android:layout_width="148dp"
-            android:layout_height="60dp"
-            app:backgroundTint="#78A6C8"
-            android:layout_marginLeft="25dp"
-            android:text="Chấp nhận" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="#78A6C8">
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_add"
+                android:layout_marginLeft="10dp"/>
+            <Button
+                android:id="@+id/btnAccept"
+                android:layout_width="124dp"
+                android:layout_height="60dp"
+                android:background="#78A6C8"
+                android:textAllCaps="false"
+                android:textSize="20dp"
+                android:text="Chấp nhận" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="#78A6C8"
+            android:layout_marginLeft="10dp">
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_refuse"
+                android:layout_marginLeft="10dp"/>
         <Button
             android:id="@+id/btnRefuse"
-            android:layout_width="148dp"
+            android:layout_width="124dp"
             android:layout_height="60dp"
-            app:backgroundTint="#78A6C8"
-            android:layout_marginLeft="25dp"
+            android:background="#78A6C8"
+            android:textAllCaps="false"
+            android:textSize="20dp"
             android:text="Từ chối" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

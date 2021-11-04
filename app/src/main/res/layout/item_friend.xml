@@ -19,6 +19,7 @@
             android:gravity="left"
             >
             <com.example.chat.CricleImage
+                android:id="@+id/imgFriend"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginLeft="20sp"
@@ -28,15 +29,16 @@
                 android:layout_width="228dp"
                 android:layout_height="wrap_content"
                 android:text="Họ và tên"
-                android:textStyle="normal|bold"
+                android:textStyle="normal"
                 android:textSize="25dp"
                 android:layout_marginLeft="15dp"
-                android:padding="10dp"
+                android:layout_gravity="center"
                 android:textColor="@color/black"/>
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_menu_curent" />
+                android:layout_gravity="center"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_menu_current" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

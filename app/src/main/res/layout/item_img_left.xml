@@ -22,9 +22,10 @@
                 android:layout_height="40dp"
                 android:src="@drawable/avt1" />
             <ImageView
-                android:layout_width="324dp"
-                android:layout_height="324dp"
-                android:src="@drawable/avt1"
+                android:id="@+id/imgReceive"
+                android:layout_width="184dp"
+                android:layout_height="200dp"
+                android:src="@drawable/haocute"
                 android:layout_marginLeft="5dp"/>
         </LinearLayout>
     </LinearLayout>

@@ -17,18 +17,18 @@
             android:id="@+id/imgBack"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@drawable/ic_back"/>
+            android:src="@drawable/ic_back2"/>
         <com.example.chat.CricleImage
             android:layout_width="228dp"
             android:layout_height="228dp"
-            android:src="@drawable/haocute"
+            android:src="@drawable/ic_exp_avt"
             android:layout_marginTop="50dp"
             android:layout_marginLeft="50dp"/>
         <ImageView
             android:id="@+id/img_Change_Profile"
-            android:layout_width="35dp"
+            android:layout_width="40dp"
             android:layout_height="35dp"
-            android:src="@drawable/ic_change_name_fr"
+            android:src="@drawable/ic_edit"
             android:layout_marginTop="248dp"/>
     </LinearLayout>
     <LinearLayout
@@ -48,7 +48,7 @@
                 android:textStyle="normal"
                 android:textColor="@color/black"
                 android:text="Họ và tên:"
-                android:textSize="28dp"
+                android:textSize="25dp"
                 android:layout_marginLeft="20dp"
                 />
             <TextView
@@ -58,7 +58,7 @@
                 android:textStyle="normal"
                 android:textColor="@color/black"
                 android:text="Nguyễn Văn A"
-                android:textSize="28dp"
+                android:textSize="25dp"
                 android:layout_marginLeft="5dp"
                 />
         </LinearLayout>
@@ -73,7 +73,7 @@
                 android:textStyle="normal"
                 android:textColor="@color/black"
                 android:text="Ngày sinh:"
-                android:textSize="28dp"
+                android:textSize="25dp"
                 android:layout_marginLeft="20dp"
                 />
             <TextView
@@ -83,7 +83,7 @@
                 android:textStyle="normal"
                 android:textColor="@color/black"
                 android:text="10/11/2000"
-                android:textSize="28dp"
+                android:textSize="25dp"
                 android:layout_marginLeft="5dp"
                 />
         </LinearLayout>
@@ -98,7 +98,7 @@
                 android:textStyle="normal"
                 android:textColor="@color/black"
                 android:text="Địa chỉ: "
-                android:textSize="28dp"
+                android:textSize="25dp"
                 android:layout_marginLeft="20dp"
                 />
             <TextView
@@ -108,7 +108,7 @@
                 android:textStyle="normal"
                 android:textColor="@color/black"
                 android:text="Phú Nhuận,HCM"
-                android:textSize="28dp"
+                android:textSize="25dp"
                 android:layout_marginLeft="5dp"
                 />
         </LinearLayout>
@@ -118,7 +118,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="10dp"
-        android:background="#C4C4C4">
+        android:background="#78A6C8">
         <ImageView
             android:id="@+id/idChatLight"
             android:layout_width="wrap_content"

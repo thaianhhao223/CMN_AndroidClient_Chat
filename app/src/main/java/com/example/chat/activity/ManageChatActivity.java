@@ -21,7 +21,7 @@ public class ManageChatActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_chat);
-        imageViewOptionAuth = findViewById(R.id.btnAuthOption);
+        imageViewOptionAuth = findViewById(R.id.imgAuthOption);
 
         imageViewOptionAuth.setOnClickListener(new View.OnClickListener() {
             @Override

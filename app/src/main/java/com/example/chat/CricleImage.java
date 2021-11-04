@@ -13,7 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-public class CricleImage extends ImageView {
+public class CricleImage extends androidx.appcompat.widget.AppCompatImageView {
 
     public CricleImage(Context context) {
         super(context);

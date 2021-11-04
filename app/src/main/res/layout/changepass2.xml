@@ -30,24 +30,6 @@
             android:gravity="center"
             android:orientation="horizontal">
             <EditText
-                android:id="@+id/edtOldpass"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:ems="10"
-                android:hint="Oldpass"
-                android:textColorHint="@color/hintTextColor"
-                android:textStyle="normal"
-                android:inputType="textPassword" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="300dp"
-            android:layout_height="45dp"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/shape"
-            android:gravity="center"
-            android:orientation="horizontal">
-            <EditText
                 android:id="@+id/edtNewpass"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
