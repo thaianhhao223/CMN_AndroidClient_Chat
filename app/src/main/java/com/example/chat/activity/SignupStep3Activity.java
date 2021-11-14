@@ -20,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.chat.R;
+import com.example.chat.handler.IPCONFIG;
 import com.google.android.gms.security.ProviderInstaller;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -34,6 +35,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SignupStep3Activity extends AppCompatActivity {
+    private final String IP_HOST = IPCONFIG.getIp_config();
     private Button btnResendEmail,btnSignUpDone;
     private String email,password,fullname,birthday,phonenumber,address;
     private FirebaseAuth auth;

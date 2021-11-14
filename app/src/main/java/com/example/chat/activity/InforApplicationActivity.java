@@ -9,8 +9,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.chat.R;
+import com.example.chat.handler.IPCONFIG;
 
 public class InforApplicationActivity extends AppCompatActivity {
+    private final String IP_HOST = IPCONFIG.getIp_config();
     private ImageView imgViewInforApplicationBack;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

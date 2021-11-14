@@ -4,35 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/mint_green"
-    android:orientation="vertical"
-    >
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="6dp"
-        android:background="#78A6C8">
+        android:background="#78A6C8"
+        android:padding="6dp">
+
         <ImageView
             android:id="@+id/imgViewConversationPersonalBack"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_back"/>
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_back" />
+
         <TextView
             android:id="@+id/tvNameReceive"
             android:layout_width="250dp"
             android:layout_height="40dp"
-            android:textColor="@color/black"
             android:layout_marginLeft="15sp"
-            android:textSize="25dp"
             android:text="Nguyễn Ngọc Hậu"
-            />
+            android:textColor="@color/black"
+            android:textSize="25dp" />
+
         <ImageView
             android:id="@+id/imgMenu"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:src="@drawable/ic_menu"
-            android:layout_marginLeft="60dp"/>
+            android:layout_gravity="center"
+            android:layout_marginLeft="60dp"
+            android:src="@drawable/ic_menu" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,44 +46,51 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcvConversationPersonal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"></androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.4"
-        android:orientation="horizontal"
-        android:gravity="bottom">
+        android:layout_marginBottom="5dp"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edtMess"
+            android:layout_width="288dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/botron_mess"
+            android:hint="Nhập tin nhắn"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hintTextColor"
+            android:textSize="24dp"
+            android:textStyle="normal" />
 
         <ImageView
-            android:id="@+id/imgViewConversationPersonalSend"
+            android:id="@+id/imgConversationChooseImage"
             android:layout_width="32dp"
             android:layout_height="48dp"
             android:layout_marginLeft="5dp"
-            android:src="@drawable/ic_back" />
+            android:src="@drawable/ic_img" />
+
         <ImageView
             android:layout_width="32dp"
             android:layout_height="48dp"
-            android:src="@drawable/ic_user"
-            android:layout_marginLeft="5dp"/>
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/ic_url" />
+
         <ImageView
+            android:id="@+id/edtSendMessage"
             android:layout_width="32dp"
             android:layout_height="48dp"
-            android:src="@drawable/ic_pass"
-            android:layout_marginLeft="5dp"/>
-    <EditText
-        android:id="@+id/edtSendMessage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/botron_button"
-        android:layout_marginLeft="5dp"
-        android:textSize="24dp"
-        android:hint="  Nhập tin nhắn"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:inputType="text"
-        />
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/ic_baseline_send_24"
+            android:tint="#000000" />
+
     </LinearLayout>
 </LinearLayout>

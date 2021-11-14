@@ -12,12 +12,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.chat.R;
+import com.example.chat.handler.IPCONFIG;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SignupStep1Activity extends AppCompatActivity {
+    private final String IP_HOST = IPCONFIG.getIp_config();
     private Button btnDangKy;
     private TextView edtEmailSignUp, edtComfirmPassSignUp,edtPassSignUp, tvBackScreen;
     private String email,password;
@@ -42,7 +44,7 @@ public class SignupStep1Activity extends AppCompatActivity {
         edtPassSignUp.setText(password);
         edtComfirmPassSignUp.setText(password);
 
-        edtEmailSignUp.setText("thaianhhao322@gmail.com");
+        edtEmailSignUp.setText("thienprocs@gmail.com");
         edtPassSignUp.setText("Nhoxrin223");
         edtComfirmPassSignUp.setText("Nhoxrin223");
 
@@ -66,11 +68,11 @@ public class SignupStep1Activity extends AppCompatActivity {
         });
     }
     public boolean Valid(String pass, String comfirm, String email){
-        String reg = "^[a-zA-Z][\\w-]+@([\\w]+\\.[\\w]+)$";
-        if(!email.matches(reg)){
-            Toast.makeText(getApplicationContext(), "Sai định dạng email!", Toast.LENGTH_SHORT).show();
-            return false;
-        }
+//        String reg = "^[a-zA-Z][\\w-]+@([\\w]+\\.[\\w]+)$";
+//        if(!email.matches(reg)){
+//            Toast.makeText(getApplicationContext(), "Sai định dạng email!", Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
         if(pass.length() < 6){
             Toast.makeText(getApplicationContext(), "Mật khẩu quá ngắn (ít nhất 6 kí tự)!", Toast.LENGTH_SHORT).show();
             return false;

@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.example.chat.R;
 import com.example.chat.adapter.ListFriendRequestAdapter;
 import com.example.chat.entity.User;
+import com.example.chat.handler.IPCONFIG;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListRequestAddFrActivity extends AppCompatActivity {
+    private final String IP_HOST = IPCONFIG.getIp_config();
     private ImageView imgViewListRequestAdđFrBack;
     private RecyclerView recyclerView;
     private ListFriendRequestAdapter listFriendRequestAdapter;
@@ -79,7 +81,7 @@ public class ListRequestAddFrActivity extends AppCompatActivity {
 
     public void GetUserRequest(String user){
         RequestQueue queue = Volley.newRequestQueue(ListRequestAddFrActivity.this);
-        String url = "http://192.168.1.107:3000/Friendrequest/listUser?id_user=" + user;
+        String url = "http://"+IP_HOST+":3000/Friendrequest/listUser?id_user=" + user;
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {

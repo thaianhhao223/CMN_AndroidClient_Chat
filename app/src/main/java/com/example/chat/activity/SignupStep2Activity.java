@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.chat.R;
+import com.example.chat.handler.IPCONFIG;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -28,12 +29,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class SignupStep2Activity extends AppCompatActivity {
+    private final String IP_HOST = IPCONFIG.getIp_config();
     private Button btnComFirmInforUser;
     private TextView edtFullNameSignUp, edtPhoneNumberSignUp, edtAddressSignUp, tvBackScreen;
     private EditText edtBirthdaySignUp;
     private FirebaseAuth auth;
     private FirebaseUser user;
-
+    private Boolean kiemtrasdt = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,11 +79,20 @@ public class SignupStep2Activity extends AppCompatActivity {
         btnComFirmInforUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                checkPhoneNumber();
                 String name = edtFullNameSignUp.getText().toString();
                 String date = edtBirthdaySignUp.getText().toString();
                 String phone = edtPhoneNumberSignUp.getText().toString();
                 String add = edtAddressSignUp.getText().toString();
-                CreateNewUser(email, password, user.getUid().toString(), name, date, phone, add);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(kiemtrasdt == true)
+                            CreateNewUser(email, password, user.getUid().toString(), name, date, phone, add);
+                    }
+                },2000);
+
             }
         });
         tvBackScreen.setOnClickListener(new View.OnClickListener() {
@@ -117,7 +128,7 @@ public class SignupStep2Activity extends AppCompatActivity {
         String[] replacebirthday = birthday.split("/");
         String chuoiNamSinh = replacebirthday[2] + "-" + replacebirthday[1] + "-" + replacebirthday[0];
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.107:3000/Users?id_user=" + idUser + "&name=" + fullname + "&birthday=" + chuoiNamSinh + "&phonenumber=" + phonenumber + "&address=" + address;
+        String url = "http://"+IP_HOST+":3000/Users?id_user=" + idUser + "&name=" + fullname + "&birthday=" + chuoiNamSinh + "&phonenumber=" + phonenumber + "&address=" + address;
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -156,47 +167,34 @@ public class SignupStep2Activity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
-//    public boolean checkPhoneNumber() {
-//        final boolean[] check = {false};
-//        String phonenumber = edtPhoneNumberSignUp.getText().toString();
-//        RequestQueue queue = Volley.newRequestQueue(SignupStep2Activity.this);
-//        String url = "http://192.168.1.107:3000/Users/phonenumber?phonenumber=" + phonenumber;
-//        // Request a string response from the provided URL.
-//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        if (response == null) {
-//                            Toast.makeText(SignupStep2Activity.this, "Không tìm thấy người dùng", Toast.LENGTH_SHORT).show();
-//                            check[0] = true;
-//                        }
-//                        Log.d("Response:", response.toString());
-//                        if (response.length() > 0) {
-//                            Toast.makeText(SignupStep2Activity.this, "Số điện thoại này đã được sử dụng!", Toast.LENGTH_SHORT).show();
-//                        } else {
-//                            Toast.makeText(SignupStep2Activity.this, "Không tìm thấy người dùng", Toast.LENGTH_SHORT).show();
-//                            check[0] = true;
-//                        }
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(SignupStep2Activity.this, "Volley Error", Toast.LENGTH_SHORT).show();
-//                Log.d("Volley Erro:", error.toString());
-//            }
-//        });
-//        // Add the request to the RequestQueue.
-//        queue.add(stringRequest);
-//        final boolean[] waiting = {true};
-//        Handler handler = new Handler();
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                waiting[0] = false;
-//            }
-//        }, 2000);
-//        while (waiting[0] == true) {
-//            return check[0];
-//        };
-//    }
+    public void checkPhoneNumber() {
+        kiemtrasdt = false;
+        String phonenumber = edtPhoneNumberSignUp.getText().toString();
+        RequestQueue queue = Volley.newRequestQueue(SignupStep2Activity.this);
+        String url = "http://"+IP_HOST+":3000/Users/phonenumber?phonenumber=" + phonenumber;
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response == null) {
+                            kiemtrasdt = true;
+                        }
+                        Log.d("Response:", response.toString());
+                        if (response.length() > 0) {
+                            Toast.makeText(SignupStep2Activity.this, "Số điện thoại này đã được sử dụng!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            kiemtrasdt = true;
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(SignupStep2Activity.this, "Volley Error", Toast.LENGTH_SHORT).show();
+                Log.d("Volley Erro:", error.toString());
+            }
+        });
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
 }

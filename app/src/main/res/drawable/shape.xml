@@ -17,6 +17,6 @@
         android:top="1dp" >
     </padding>
     <!-- chỗ này set độ cong góc -->
-    <corners android:radius="0dp" >
+    <corners android:radius="5dp" >
     </corners>
 </shape>

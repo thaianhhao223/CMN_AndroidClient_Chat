@@ -4,29 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAFDFD"
+    android:background="#FFFFFF"
     android:orientation="vertical"
     >
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#78A6C8"
-        android:padding="10dp">
-
+        android:padding="10dp"
+        android:background="#78A6C8">
         <ImageView
             android:id="@+id/imgViewListRequestAdđFrBack"
-            android:layout_width="35dp"
+            android:layout_width="30dp"
             android:layout_height="35dp"
-            android:src="@drawable/ic_back" />
-
+            android:src="@drawable/ic_back"/>
         <TextView
             android:layout_width="320dp"
             android:layout_height="40dp"
-            android:text="Danh sách kết bạn"
+            android:textColor="#FFFFFF"
             android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            android:text="Danh sách kết bạn"
+            />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,11 +32,11 @@
         android:layout_weight="8"
         android:orientation="horizontal"
         android:layout_marginTop="20dp">
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcvListRequestFr"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="match_parent">
+        </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
 
 </LinearLayout>

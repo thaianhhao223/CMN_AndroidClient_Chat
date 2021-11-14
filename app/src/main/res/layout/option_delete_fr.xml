@@ -4,23 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAFDFD"
+    android:background="@drawable/mint_green"
     android:orientation="vertical"
     >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:background="#C4C4C4">
+        android:background="#78A6C8">
         <ImageView
-            android:id="@+id/imgViewOptionAuthBack"
+            android:id="@+id/imgOptionFriendBack"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/ic_back"/>
         <TextView
             android:layout_width="320dp"
             android:layout_height="40dp"
-            android:textColor="@color/black"
+            android:textColor="#FFFFFF"
             android:textAlignment="center"
             android:textSize="25dp"
             android:text="Tùy chọn"
@@ -37,10 +37,10 @@
             android:src="@drawable/ic_change_name_fr"
             android:layout_marginLeft="15dp"/>
         <TextView
-            android:id="@+id/tvChangeNameFr"
+            android:id="@+id/tvOptionFriendChangeName"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:textStyle="bold"
+            android:textStyle="normal"
             android:textColor="@color/black"
             android:text="Thay đổi tên gợi nhớ"
             android:textSize="28dp"
@@ -58,10 +58,10 @@
             android:src="@drawable/ic_delete_fr"
             android:layout_marginLeft="15dp"/>
         <TextView
-            android:id="@+id/tvDeleteFr"
+            android:id="@+id/tvOptionFriendDelete"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:textStyle="bold"
+            android:textStyle="normal"
             android:textColor="@color/black"
             android:text="Xóa bạn"
             android:textSize="28dp"

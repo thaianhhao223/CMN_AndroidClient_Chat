@@ -10,23 +10,26 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:layout_height="wrap_content">
+            android:orientation="horizontal">
+
             <ImageView
-                android:layout_width="242dp"
-                android:layout_height="324dp"
-                android:src="@drawable/haocute"
-                android:layout_marginRight="5dp"/>
+                android:id="@+id/imgSend"
+                android:layout_width="271dp"
+                android:layout_height="264dp"
+                android:src="@drawable/img" />
+
             <com.example.chat.CricleImage
                 android:id="@+id/imgAvt"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/avt1"
-                />
+                android:layout_marginTop="168dp"
+                android:src="@drawable/avt1" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

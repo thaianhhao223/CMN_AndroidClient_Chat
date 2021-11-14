@@ -25,6 +25,7 @@ import com.example.chat.R;
 import com.example.chat.adapter.ListFriendAdapter;
 import com.example.chat.adapter.ListFriendRequestAdapter;
 import com.example.chat.entity.User;
+import com.example.chat.handler.IPCONFIG;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
@@ -38,7 +39,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContactActivity extends AppCompatActivity {
-    private ImageView imgViewContactChatRegular, imgViewAddFriend;
+
+    private final String IP_HOST = IPCONFIG.getIp_config();
+
+    private ImageView imgViewContactChatRegular, imgViewAddFriend,imgViewContactUserProfileLight;
     private TextView tvNumberRequestAddfriend;
 
     private RecyclerView recyclerView;
@@ -47,7 +51,7 @@ public class ContactActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
     private FirebaseUser user;
-    private String id_user;
+    private String id_user,id_chatroom;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,6 +66,7 @@ public class ContactActivity extends AppCompatActivity {
         imgViewContactChatRegular = findViewById(R.id.imgViewContactChatRegular);
         imgViewAddFriend = findViewById(R.id.imgViewAddFriend);
         tvNumberRequestAddfriend = findViewById(R.id.tvNumberRequestAddfriend);
+        imgViewContactUserProfileLight = findViewById(R.id.imgViewContactUserProfileLight);
 
         id_user = user.getUid();
         GetCountRequest(id_user);
@@ -100,11 +105,18 @@ public class ContactActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        imgViewContactUserProfileLight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ContactActivity.this, UserProfileActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void GetCountRequest(String user){
         RequestQueue queue = Volley.newRequestQueue(ContactActivity.this);
-        String url = "http://192.168.1.107:3000/Friendrequest/countRequest?id_user="+user;
+        String url = "http://"+IP_HOST+":3000/Friendrequest/countRequest?id_user="+user;
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -135,7 +147,7 @@ public class ContactActivity extends AppCompatActivity {
     }
     public void GetUserFriend(String user){
         RequestQueue queue = Volley.newRequestQueue(ContactActivity.this);
-        String url = "http://192.168.1.107:3000/Friend/listUser?id_user=" + user;
+        String url = "http://"+IP_HOST+":3000/Friend/listUser?id_user=" + user;
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {

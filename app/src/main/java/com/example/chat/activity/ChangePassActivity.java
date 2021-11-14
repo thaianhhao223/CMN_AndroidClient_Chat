@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.chat.R;
+import com.example.chat.handler.IPCONFIG;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -21,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class ChangePassActivity extends AppCompatActivity {
+    private final String IP_HOST = IPCONFIG.getIp_config();
     private EditText edtChangePassOldpass, edtChangePassNewpass,edtChangePassPassAgain;
     private Button btnChangePassComfirm;
     private TextView tvBackScreenChangePass;
@@ -43,9 +45,6 @@ public class ChangePassActivity extends AppCompatActivity {
         usercheck = auth.getCurrentUser();
 
         email = user.getEmail();
-
-
-
 
         btnChangePassComfirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +73,7 @@ public class ChangePassActivity extends AppCompatActivity {
                                                         if (task.isSuccessful()) {
                                                             Toast.makeText(ChangePassActivity.this, "Đã cập nhật mật khẩu, vui lòng đăng nhập lại!", Toast.LENGTH_SHORT).show();
                                                             Intent intent = new Intent(ChangePassActivity.this, LoginActivity.class);
+                                                            auth.signOut();
                                                             startActivity(intent);
                                                         } else {
                                                             Toast.makeText(ChangePassActivity.this, "Failed to update password!", Toast.LENGTH_SHORT).show();

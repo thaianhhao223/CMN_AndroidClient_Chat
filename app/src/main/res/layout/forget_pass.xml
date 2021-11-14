@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mint_green"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="248dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/logo" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nhập email của tài khoản:"
+            android:textStyle="normal"
+            android:textColor="@color/black"
+            android:textSize="21dp"
+            android:layout_marginBottom="5dp"/>
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_marginHorizontal="24dp"
+            android:background="@drawable/shape"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/edtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:layout_marginLeft="5dp"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:textColor="#000000"
+                android:textColorHint="@color/hintTextColor"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/btnComfirmInforUser"
+            android:layout_width="114dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            android:textAllCaps="false"
+            android:text="Nhận OTP"
+            android:textColor="@color/black"
+            app:backgroundTint="#78A6C8"
+            android:background="@drawable/botron_button"/>
+
+        <TextView
+            android:id="@+id/tvBackScreenSignUpStep1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Quay lại"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+</LinearLayout>

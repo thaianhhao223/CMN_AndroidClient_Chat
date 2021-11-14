@@ -21,11 +21,13 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/avt1" />
+
             <ImageView
-                android:layout_width="324dp"
-                android:layout_height="324dp"
-                android:src="@drawable/avt1"
-                android:layout_marginLeft="5dp"/>
+                android:id="@+id/imgReceive"
+                android:layout_width="284dp"
+                android:layout_height="293dp"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/haocute" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

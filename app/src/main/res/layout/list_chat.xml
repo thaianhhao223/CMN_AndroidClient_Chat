@@ -16,26 +16,28 @@
         <SearchView
             android:layout_width="354dp"
             android:layout_height="match_parent">
-
         </SearchView>
 
         <ImageView
-            android:id="@+id/imgViewAddFriend"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/ic_menu" />
+            android:id="@+id/imgAuthOption"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_menu"
+            android:layout_marginLeft="5dp"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="8"
+        android:layout_weight="1"
         android:orientation="horizontal">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcvChat"
+            android:id="@+id/rcvChatRoom"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
 
@@ -47,26 +49,23 @@
         android:padding="10dp">
 
         <ImageView
-            android:id="@+id/imgViewContactChatRegular"
+            android:id="@+id/idChatLight"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:foregroundGravity="center"
             android:src="@drawable/ic_chat_solid" />
 
         <ImageView
-            android:id="@+id/imgViewManagerContactregular"
+            android:id="@+id/imgViewManagerConversationContactregular"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="30dp"
-            android:foregroundGravity="center"
             android:src="@drawable/ic_friends_light" />
 
         <ImageView
-            android:id="@+id/idPersonLight"
-            android:layout_width="86dp"
+            android:id="@+id/idManagerConversationPersonLight"
+            android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_marginLeft="70dp"
-            android:foregroundGravity="center"
             android:src="@drawable/ic_person_light" />
     </LinearLayout>
 </LinearLayout>

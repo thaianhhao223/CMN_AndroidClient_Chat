@@ -7,33 +7,39 @@
     android:background="#FAFDFD"
     android:orientation="vertical"
     >
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#78A6C8"
-        android:padding="10dp">
-
-        <SearchView
-            android:id="@+id/searchViewContact"
-            android:layout_width="358dp"
-            android:layout_height="match_parent" />
+        android:padding="10dp"
+        android:background="#78A6C8">
+        <ImageView
+            android:id="@+id/imgSearch"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_search"/>
+        <TextView
+            android:layout_width="320dp"
+            android:layout_height="40dp"
+            android:textColor="#FFFFFF"
+            android:textAlignment="center"
+            android:textSize="25dp"
+            android:text="Bạn bè "
+            />
 
         <ImageView
             android:id="@+id/imgViewAddFriend"
             android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/ic_add_solid" />
+            android:layout_height="24dp"
+            android:src="@drawable/ic_add" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/tvNumberRequestAddfriend"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:text="Lời mời kết bạn (0) "
-        android:textAlignment="gravity"
-        android:textColor="#000000"
-        android:textSize="24sp"
+        android:layout_height="34dp"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="18sp"
         android:textStyle="italic" />
 
     <LinearLayout
@@ -48,32 +54,30 @@
             android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#78A6C8"
         android:orientation="horizontal"
-        android:padding="10dp">
-
+        android:padding="10dp"
+        android:background="#78A6C8">
         <ImageView
             android:id="@+id/imgViewContactChatRegular"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:src="@drawable/ic_chat_light" />
-
+            android:src="@drawable/ic_chat_light"/>
         <ImageView
-            android:id="@+id/imgViewManagerContactregular"
+            android:id="@+id/idFriendSolid"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_marginLeft="30dp"
-            android:src="@drawable/ic_friends_solid" />
-
+            android:src="@drawable/ic_friends_solid"
+            />
         <ImageView
-            android:id="@+id/idPersonLight"
+            android:id="@+id/imgViewContactUserProfileLight"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
             android:layout_marginLeft="70dp"
-            android:src="@drawable/ic_person_light" />
+            android:layout_height="35dp"
+            android:src="@drawable/ic_person_light"
+            />
     </LinearLayout>
 </LinearLayout>

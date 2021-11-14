@@ -15,11 +15,14 @@ import com.example.chat.CricleImage;
 import com.example.chat.R;
 import com.example.chat.entity.Message;
 import com.example.chat.entity.User;
+import com.example.chat.handler.IPCONFIG;
 import com.example.chat.listener.ItemClickListener;
 
 import java.util.ArrayList;
 
 public class ConversationAdapter extends RecyclerView.Adapter{
+    private final String IP_HOST = IPCONFIG.getIp_config();
+
     private static final int VIEW_TYPE_MESSAGE_SENT = 1;
     private static final int VIEW_TYPE_MESSAGE_RECEIVED = 2;
 
@@ -34,6 +37,7 @@ public class ConversationAdapter extends RecyclerView.Adapter{
         this.id_user = id_user;
 
     }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -79,8 +83,16 @@ public class ConversationAdapter extends RecyclerView.Adapter{
         }
     }
 
+    public void addNewMessage(Message message) {
+        if (listMessage == null) listMessage = new ArrayList();
+        listMessage.add(message);
+        //notifyDataSetChanged();
+        notifyItemInserted(listMessage.size()-1);
+    }
     @Override
     public int getItemCount() {
+        if (listMessage == null)
+            return 0;
         return listMessage.size();
     }
     public class SendViewHolder extends RecyclerView.ViewHolder{

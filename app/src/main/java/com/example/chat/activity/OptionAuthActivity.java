@@ -10,12 +10,22 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.chat.R;
+import com.example.chat.handler.IPCONFIG;
+import com.example.chat.socket.SocketClient;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import io.socket.client.Socket;
 
 public class OptionAuthActivity extends AppCompatActivity {
-    private FirebaseAuth auth = FirebaseAuth.getInstance();
+    private final String IP_HOST = IPCONFIG.getIp_config();
+    private FirebaseAuth auth;
     private TextView tvLogOut, tvInforAuth, tvChangePass, tvInforApp;
     private ImageView imgViewOptionAuthBack;
+    private SocketClient mSocket;
+    private Socket socket;
+    private FirebaseUser user;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +36,19 @@ public class OptionAuthActivity extends AppCompatActivity {
         tvInforApp = findViewById(R.id.tvInforApp);
         imgViewOptionAuthBack = findViewById(R.id.imgViewOptionAuthBack);
 
+        // Get firebase user
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+        // Connect Socket
+        socket = mSocket.getmSocket();
 
+        tvInforAuth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OptionAuthActivity.this, UserProfileActivity.class);
+                startActivity(intent);
+            }
+        });
         tvInforApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,6 +67,7 @@ public class OptionAuthActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 signOut();
+                socket.disconnect();
                 Intent intent = new Intent(OptionAuthActivity.this, LoginActivity.class);
                 startActivity(intent);
             }

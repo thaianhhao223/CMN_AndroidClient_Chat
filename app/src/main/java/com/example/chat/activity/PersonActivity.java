@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.example.chat.CricleImage;
 import com.example.chat.R;
 import com.example.chat.entity.User;
+import com.example.chat.handler.IPCONFIG;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
@@ -31,6 +32,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class PersonActivity extends AppCompatActivity {
+    private final String IP_HOST = IPCONFIG.getIp_config();
+
     private String id_user, id_user_request ="";
     private CricleImage imgprofilefindAvtperson;
     private ImageView imgViewprofilfindBack;
@@ -87,7 +90,7 @@ public class PersonActivity extends AppCompatActivity {
     }
     public void GetUser(String user){
         RequestQueue queue = Volley.newRequestQueue(PersonActivity.this);
-        String url = "http://192.168.1.107:3000/Users/" + user;
+        String url = "http://"+IP_HOST+":3000/Users/" + user;
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -120,7 +123,7 @@ public class PersonActivity extends AppCompatActivity {
 
     public void RequestAddFriend(String user, String user_request){
         RequestQueue queue = Volley.newRequestQueue(PersonActivity.this);
-        String url = "http://192.168.1.107:3000/Friendrequest?id_user="+user+"&id_user_request="+user_request;
+        String url = "http://"+IP_HOST+":3000/Friendrequest?id_user="+user+"&id_user_request="+user_request;
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -155,7 +158,7 @@ public class PersonActivity extends AppCompatActivity {
 
     public void DeleteRequestAddFriend(String user, String user_request){
         RequestQueue queue = Volley.newRequestQueue(PersonActivity.this);
-        String url = "http://192.168.1.107:3000/Friendrequest?id_user="+user+"&id_user_request="+user_request;
+        String url = "http://"+IP_HOST+":3000/Friendrequest?id_user="+user+"&id_user_request="+user_request;
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.DELETE, url,
                 new Response.Listener<String>() {
@@ -190,7 +193,7 @@ public class PersonActivity extends AppCompatActivity {
 
     public void CheckRequestAddfriend(String user, String user_request){
         RequestQueue queue = Volley.newRequestQueue(PersonActivity.this);
-        String url = "http://192.168.1.107:3000/Friendrequest?id_user="+user+"&id_user_request="+user_request;
+        String url = "http://"+IP_HOST+":3000/Friendrequest?id_user="+user+"&id_user_request="+user_request;
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
