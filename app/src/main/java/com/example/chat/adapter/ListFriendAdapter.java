@@ -89,7 +89,7 @@ public class ListFriendAdapter extends RecyclerView.Adapter<ListFriendAdapter.Us
                         intent.putExtra("id_chatroom",id_chatroom);
                         context.startActivity(intent);
                     }
-                },100);
+                },1000);
             }
         });
         holder.btnOption.setOnClickListener(new View.OnClickListener() {

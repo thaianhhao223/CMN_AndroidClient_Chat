@@ -2,9 +2,11 @@ package com.example.chat.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,11 +35,13 @@ public class ProfileFriendActivity extends AppCompatActivity {
     private TextView tvProfileFriendName,tvProfileFriendBirthday,tvProfileFriendAdress;
     private CricleImage imgProfileFriendAvt;
     private ImageView imgProfileFriendBack,imgProfileFriendSetting;
+    private LinearLayout btnProfileFriendMessage;
 
     private FirebaseAuth auth;
     private FirebaseUser user;
 
     private String id_friend;
+    private String id_chatroom;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,9 +60,35 @@ public class ProfileFriendActivity extends AppCompatActivity {
         imgProfileFriendAvt = findViewById(R.id.imgProfileFriendAvt);
         imgProfileFriendBack = findViewById(R.id.imgProfileFriendBack);
         imgProfileFriendSetting = findViewById(R.id.imgProfileFriendSetting);
+        btnProfileFriendMessage = findViewById(R.id.btnProfileFriendMessage);
 
         GetUser(id_friend);
 
+        btnProfileFriendMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GetChatRoom(user.getUid(),id_friend);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(ProfileFriendActivity.this, ConversationPersonalActivity.class);
+                        intent.putExtra("id_user",id_friend);
+                        intent.putExtra("name",tvProfileFriendName.getText().toString());
+                        intent.putExtra("id_chatroom",id_chatroom);
+                        startActivity(intent);
+                    }
+                },1000);
+            }
+        });
+        imgProfileFriendSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileFriendActivity.this, OptionFriendActivity.class);
+                intent.putExtra("id_user",id_friend);
+                startActivity(intent);
+            }
+        });
         imgProfileFriendBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,6 +126,36 @@ public class ProfileFriendActivity extends AppCompatActivity {
                 Log.d("Volley Erro:", error.toString());
             }
         });
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
+    public void GetChatRoom(String user,String friend){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "http://"+IP_HOST+":3000/ConversationPersonal?id_user=" + user+"&id_user_friend="+friend;
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("Response",response);
+                        try {
+                            if(response.length() > 0){
+                                JSONObject object = new JSONObject(response);
+                                id_chatroom = object.getString("id_chatroom");
+                            }else{
+                                Toast.makeText(ProfileFriendActivity.this, "Lấy id_roomchat thất bại", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Volley Erro:", error.toString());
+            }
+        });
+        Log.d("url",stringRequest.toString());
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
     }

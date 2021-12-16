@@ -58,6 +58,10 @@ public class ChatRoomAdapter extends RecyclerView.Adapter<ChatRoomAdapter.ChatRo
         String image;
         image = mCurrent.getUrl_ava_chatroom();
         Glide.with(context).load(image).into(holder.image);
+        if(mCurrent.getMessage_newest() != null)
+        holder.message.setText(mCurrent.getMessage_newest());
+        if(mCurrent.getDatetime_newest() != null)
+        holder.datetime.setText(mCurrent.getDatetime_newest());
         holder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onClick(View view, int position, boolean isLongClick) {

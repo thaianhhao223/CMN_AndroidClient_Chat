@@ -105,11 +105,12 @@ public class ConversationAdapter extends RecyclerView.Adapter{
         public SendViewHolder(@NonNull View itemView) {
             super(itemView);
             tvItemChatRightMessage = itemView.findViewById(R.id.tvItemChatRightMessage);
-
+            image = itemView.findViewById(R.id.imgViewConversationPersonalSend);
         }
 
         public void bind(Message message) {
             tvItemChatRightMessage.setText(message.getMessage());
+
         }
     }
     public class RecieveViewHolder extends RecyclerView.ViewHolder{
@@ -122,6 +123,7 @@ public class ConversationAdapter extends RecyclerView.Adapter{
         public RecieveViewHolder(@NonNull View itemView) {
             super(itemView);
             tvItemChatLeftMessage = itemView.findViewById(R.id.tvItemChatLeftMessage);
+            image = itemView.findViewById(R.id.imgViewConversationPersonalRecive);
         }
 
         public void bind(Message message) {

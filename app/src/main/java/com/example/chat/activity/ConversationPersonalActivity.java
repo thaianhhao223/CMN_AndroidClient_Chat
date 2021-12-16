@@ -64,8 +64,12 @@ import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
@@ -141,6 +145,11 @@ public class ConversationPersonalActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(edtSendMessage.getText().toString().length() > 0){
                     StoredATextMessage(edtSendMessage.getText().toString());
+                    Message message = new Message();
+                    message.setId_send(user.getUid());
+                    message.setType("text");
+                    message.setMessage(edtSendMessage.getText().toString());
+                    UpdateChatroom(message);
                     socket.emit("user_send_text",edtSendMessage.getText().toString(),id_chatroom,id_user);
                     edtSendMessage.setText("");
                 }
@@ -256,19 +265,20 @@ public class ConversationPersonalActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
-    public void UpdateChatRoom(Message message, String id_user){
+    public void UpdateChatroom(Message message){
         RequestQueue queue = Volley.newRequestQueue(ConversationPersonalActivity.this);
-        String url = "http://"+IP_HOST+":3000/ConversationPersonal?id_chatroom="+id_chatroom+"&id_send="+id_user+
-                "&message="+message;
+        String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        String url = "http://"+IP_HOST+":3000/MessageStored?id_chatroom="+id_chatroom+"&id_user_lastsend="+id_user+
+                "&message_newest="+message.getMessage()+"&datetime_newest="+currentDate;
         // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+        StringRequest stringRequest = new StringRequest(Request.Method.PUT, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         if(response.length() > 0){
-                            Log.d("message","Gửi thành công");
+                            Log.d("message","Cập nhật chatroom thành công");
                         }else{
-                            Log.d("message","Gửi thất bại");
+                            Log.d("message","Cập nhật chatroom thất bại");
                         }
                     }
                 }, new Response.ErrorListener() {

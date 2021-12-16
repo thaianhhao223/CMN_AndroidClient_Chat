@@ -1,11 +1,14 @@
 package com.example.chat.socket;
 
+import com.example.chat.handler.IPCONFIG;
+
 import java.net.URISyntaxException;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
 
 public class SocketClient {
+    private String IP_config = IPCONFIG.getIp_config();
     private static Socket mSocket;
 
 
@@ -15,7 +18,7 @@ public class SocketClient {
     public SocketClient() {
         {
             try {
-                mSocket = IO.socket("http://192.168.1.107:3001");
+                mSocket = IO.socket("http://"+IP_config+":3001");
             }catch (URISyntaxException e){
                 e.printStackTrace();
             }

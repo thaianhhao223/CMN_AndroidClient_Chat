@@ -58,6 +58,23 @@ public class ProfileRequestAddFriendActivity extends AppCompatActivity {
 
 
         GetUser(id_user);
+
+        btnProfileRequestAddFriendAccept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddFriend(user.getUid(), id_user);
+                Intent intent = new Intent(ProfileRequestAddFriendActivity.this,ListRequestAddFrActivity.class);
+                startActivity(intent);
+            }
+        });
+        btnProfileRequestAddFriendDeny.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DenyRequestFriend(user.getUid(), id_user);
+                Intent intent = new Intent(ProfileRequestAddFriendActivity.this,ListRequestAddFrActivity.class);
+                startActivity(intent);
+            }
+        });
         imgProfileRequestAddFriendBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,6 +112,98 @@ public class ProfileRequestAddFriendActivity extends AppCompatActivity {
                 Log.d("Volley Erro:", error.toString());
             }
         });
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
+
+    public void AddFriend(String user,String id_user_request){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "http://"+IP_HOST+":3000/Friend?id_user=" + user+"&id_user_request="+id_user_request;
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("Response",response);
+                        try {
+                            if(response.length() > 0){
+                                JSONObject object = new JSONObject(response);
+                                Toast.makeText(ProfileRequestAddFriendActivity.this, "Thêm bạn thành công", Toast.LENGTH_SHORT).show();
+                                CreateNewChatRoom(user,id_user_request);
+                            }else{
+                                Toast.makeText(ProfileRequestAddFriendActivity.this, "Thêm bạn thất bại", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Volley Erro:", error.toString());
+            }
+        });
+        Log.d("url",stringRequest.toString());
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
+    public void CreateNewChatRoom(String user,String id_user_request){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "http://"+IP_HOST+":3000/Chatroom?id_user=" + user+"&id_user_request="+id_user_request;
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("Response",response);
+                        try {
+                            if(response.length() > 0){
+                                JSONObject object = new JSONObject(response);
+                                Toast.makeText(ProfileRequestAddFriendActivity.this, "Thêm phòng chat mới thành công", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(ProfileRequestAddFriendActivity.this, "Thêm phòng chat mới thất bại", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Volley Erro:", error.toString());
+            }
+        });
+        Log.d("url",stringRequest.toString());
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
+    public void DenyRequestFriend(String user,String id_user_request){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "http://"+IP_HOST+":3000/Friendrequest?id_user="+id_user_request+"&id_user_request="+user;
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try{
+                            JSONObject object = new JSONObject(response);
+                            if(object.getString("message").equals("Delete success!")){
+                                Toast.makeText(ProfileRequestAddFriendActivity.this, "Xóa lời mời kết bạn thành công!", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(ProfileRequestAddFriendActivity.this, "Xóa lời mời kết bạn thất bại!", Toast.LENGTH_SHORT).show();
+                            }
+                        }catch (JSONException e){
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(ProfileRequestAddFriendActivity.this, "Volley Error", Toast.LENGTH_SHORT).show();
+                Log.d("Volley Erro:", error.toString());
+            }
+        });
+        Log.d("String request:", stringRequest.toString());
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
     }

@@ -128,7 +128,8 @@ public class SignupStep2Activity extends AppCompatActivity {
         String[] replacebirthday = birthday.split("/");
         String chuoiNamSinh = replacebirthday[2] + "-" + replacebirthday[1] + "-" + replacebirthday[0];
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://"+IP_HOST+":3000/Users?id_user=" + idUser + "&name=" + fullname + "&birthday=" + chuoiNamSinh + "&phonenumber=" + phonenumber + "&address=" + address;
+        String url = "http://"+IP_HOST+":3000/Users?id_user=" + idUser + "&name=" + fullname
+                + "&birthday=" + chuoiNamSinh + "&phonenumber=" + phonenumber + "&address=" + address;
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
