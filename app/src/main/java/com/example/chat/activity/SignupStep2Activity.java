@@ -28,6 +28,9 @@ import com.google.firebase.auth.FirebaseUser;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Date;
+import java.text.DateFormat;
+
 public class SignupStep2Activity extends AppCompatActivity {
     private final String IP_HOST = IPCONFIG.getIp_config();
     private Button btnComFirmInforUser;
@@ -127,9 +130,13 @@ public class SignupStep2Activity extends AppCompatActivity {
         // Instantiate the RequestQueue.
         String[] replacebirthday = birthday.split("/");
         String chuoiNamSinh = replacebirthday[2] + "-" + replacebirthday[1] + "-" + replacebirthday[0];
+        long currentmili = System.currentTimeMillis();
+        String create_date = String.valueOf(currentmili);
+        Date date = Date.valueOf(DateFormat.getDateInstance(DateFormat.SHORT).format(currentmili));
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "http://"+IP_HOST+":3000/Users?id_user=" + idUser + "&name=" + fullname
-                + "&birthday=" + chuoiNamSinh + "&phonenumber=" + phonenumber + "&address=" + address;
+                + "&birthday=" + chuoiNamSinh + "&phonenumber=" + phonenumber + "&address=" + address+"&create_date="+date
+                +"&url_avatar=https://thaianhhao-10112000.s3.ap-southeast-1.amazonaws.com/iuh-logo1639836847616.png";
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {

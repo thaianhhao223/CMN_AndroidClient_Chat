@@ -1,16 +1,14 @@
 package com.example.chat.activity;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.provider.MediaStore;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -20,60 +18,56 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.example.chat.R;
 import com.example.chat.adapter.ConversationAdapter;
-import com.example.chat.adapter.ListFriendAdapter;
 import com.example.chat.entity.Message;
-import com.example.chat.entity.User;
 import com.example.chat.handler.IPCONFIG;
 import com.example.chat.service.FileUploadService;
+import com.example.chat.service.OttkpClient;
 import com.example.chat.socket.SocketClient;
+import com.example.chat.ulti.MultipartUtility;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
-import io.socket.emitter.Emitter.Listener;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ConversationPersonalActivity extends AppCompatActivity {
     private final String IP_HOST = IPCONFIG.getIp_config();
@@ -100,6 +94,9 @@ public class ConversationPersonalActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.message_self);
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
         imgConversationChooseImage = findViewById(R.id.imgConversationChooseImage);
         imgViewConversationPersonalSend = findViewById(R.id.imgViewConversationPersonalSend);
@@ -139,17 +136,17 @@ public class ConversationPersonalActivity extends AppCompatActivity {
         },1500);
         socket = mSocket.getmSocket();
         Log.d("SocketID:",socket.id());
-        socket.on("recive_message", onNewMessage);
+        socket.on("recive_message_"+id_chatroom, onNewMessage);
         imgViewConversationPersonalSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(edtSendMessage.getText().toString().length() > 0){
-                    StoredATextMessage(edtSendMessage.getText().toString());
+                    StoredATextMessage("text",edtSendMessage.getText().toString());
                     Message message = new Message();
                     message.setId_send(user.getUid());
                     message.setType("text");
                     message.setMessage(edtSendMessage.getText().toString());
-                    UpdateChatroom(message);
+                    //UpdateChatroom(message);
                     socket.emit("user_send_text",edtSendMessage.getText().toString(),id_chatroom,id_user);
                     edtSendMessage.setText("");
                 }
@@ -189,10 +186,14 @@ public class ConversationPersonalActivity extends AppCompatActivity {
             Cursor cursor = getContentResolver().query(pickedImage, filePath, null, null, null);
             cursor.moveToFirst();
             String imagePath = cursor.getString(cursor.getColumnIndex(filePath[0]));
-
+            Log.d("file path", imagePath);
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inPreferredConfig = Bitmap.Config.ARGB_8888;
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath, options);
+
+            File file = new File(imagePath);
+            Uri uri = data.getData();
+            StoredAFile(file,uri);
             //imageView.setImageBitmap(bitmap);
 //            ByteArrayOutputStream stream = new ByteArrayOutputStream();
 //            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
@@ -239,16 +240,32 @@ public class ConversationPersonalActivity extends AppCompatActivity {
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
     }
-    public void StoredATextMessage(String message){
+    public void StoredATextMessage(String type, String message){
+//        Message messagetam = new Message();
+//        messagetam.setId_send(id_user);
+//        messagetam.setMessage(message);
+//        messagetam.setType(type);
+//        listMessage.add(messagetam);
+//        conversationAdapter.notifyItemInserted(listMessage.size()-1);
+//        recyclerView.scrollToPosition(listMessage.size()-1);
+
+        String fileUrl = "";
+        if(!type.equalsIgnoreCase("text") ){
+            fileUrl = message;
+            String[] tenfile = message.split("/");
+            message = tenfile[tenfile.length-1];
+        }
+        long currentmili = System.currentTimeMillis();
         RequestQueue queue = Volley.newRequestQueue(ConversationPersonalActivity.this);
         String url = "http://"+IP_HOST+":3000/MessageStored?id_chatroom="+id_chatroom+"&id_send="+id_user+
-                "&message="+message;
+                "&message="+message+"&type="+type+"&sendAt="+currentmili+"&fileUrl="+fileUrl; //
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                             if(response.length() > 0){
+                                Log.d("Server",response.toString());
                                 Log.d("message","Gửi thành công");
                             }else{
                                 Log.d("message","Gửi thất bại");
@@ -263,6 +280,20 @@ public class ConversationPersonalActivity extends AppCompatActivity {
         Log.d("url",stringRequest.toString());
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
+    }
+    public void StoredAFile(File file,Uri uri){
+        OttkpClient ottkpClient = new OttkpClient();
+
+        try {
+            String response = ottkpClient.storgeAFile(file);
+            JSONObject tam = new JSONObject(response);
+            String url = tam.getString("url");
+            StoredATextMessage("image",url);
+            Log.d("url file:", url);
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void UpdateChatroom(Message message){
@@ -291,6 +322,7 @@ public class ConversationPersonalActivity extends AppCompatActivity {
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
     }
+
 
     private Emitter.Listener onNewMessage =  new Emitter.Listener() {
         @Override

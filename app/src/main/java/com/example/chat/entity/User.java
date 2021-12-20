@@ -8,7 +8,7 @@ public class User {
     private String address;
     private String url_avatar;
     private String status;
-    private String create;
+    private String create_date;
 
     public String getId_user() {
         return id_user;
@@ -66,19 +66,19 @@ public class User {
         this.status = status;
     }
 
-    public String getCreate() {
-        return create;
+    public String getCreate_date() {
+        return create_date;
     }
 
-    public void setCreate(String create) {
-        this.create = create;
+    public void setCreate_date(String create_date) {
+        this.create_date = create_date;
     }
 
     public User() {
 
     }
 
-    public User(String id_user, String name, String birthday, String phonenumber, String address, String url_avatar, String status, String create) {
+    public User(String id_user, String name, String birthday, String phonenumber, String address, String url_avatar, String status, String create_date) {
         this.id_user = id_user;
         this.name = name;
         this.birthday = birthday;
@@ -86,7 +86,7 @@ public class User {
         this.address = address;
         this.url_avatar = url_avatar;
         this.status = status;
-        this.create = create;
+        this.create_date = create_date;
     }
 
     @Override
@@ -99,7 +99,7 @@ public class User {
                 ", address='" + address + '\'' +
                 ", url_avatar='" + url_avatar + '\'' +
                 ", status='" + status + '\'' +
-                ", create='" + create + '\'' +
+                ", create='" + create_date + '\'' +
                 '}';
     }
 }

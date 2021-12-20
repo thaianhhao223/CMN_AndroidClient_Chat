@@ -1,6 +1,7 @@
 package com.example.chat.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.chat.CricleImage;
 import com.example.chat.R;
+import com.example.chat.activity.UserProfileActivity;
 import com.example.chat.entity.Message;
 import com.example.chat.entity.User;
 import com.example.chat.handler.IPCONFIG;
@@ -25,7 +27,8 @@ public class ConversationAdapter extends RecyclerView.Adapter{
 
     private static final int VIEW_TYPE_MESSAGE_SENT = 1;
     private static final int VIEW_TYPE_MESSAGE_RECEIVED = 2;
-
+    private static final int VIEW_TYPE_MESSAGE_Image_SENT = 3;
+    private static final int VIEW_TYPE_MESSAGE_Image_RECEIVED  = 4;
     private Context context;
     private LayoutInflater layoutInflater;
     private ArrayList<Message> listMessage = new ArrayList<>();
@@ -47,7 +50,18 @@ public class ConversationAdapter extends RecyclerView.Adapter{
             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.item_chat_right, parent, false);
             return new SendViewHolder(view);
-        } else if (viewType == VIEW_TYPE_MESSAGE_RECEIVED) {
+        }
+        if (viewType == VIEW_TYPE_MESSAGE_Image_SENT) {
+            view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.item_img_right, parent, false);
+            return new SendImageViewHolder(view);
+        }
+        if (viewType == VIEW_TYPE_MESSAGE_Image_RECEIVED) {
+            view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.item_img_left, parent, false);
+            return new RecieveImageViewHolder(view);
+        }
+        if (viewType == VIEW_TYPE_MESSAGE_RECEIVED) {
             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.item_chat_left, parent, false);
             return new RecieveViewHolder(view);
@@ -61,10 +75,17 @@ public class ConversationAdapter extends RecyclerView.Adapter{
     public int getItemViewType(int position) {
         Message message =  listMessage.get(position);
 
-        if (message.getId_send().equals(id_user)) {
+        if (message.getId_send().equals(id_user) && !message.getType().equalsIgnoreCase("image") ) {
             // If the current user is the sender of the message
             return VIEW_TYPE_MESSAGE_SENT;
-        } else {
+        }
+        if(message.getId_send().equals(id_user) && message.getType().equalsIgnoreCase("image")){
+            return VIEW_TYPE_MESSAGE_Image_SENT;
+        }
+        if(!message.getId_send().equals(id_user) && message.getType().equalsIgnoreCase("image")){
+            return VIEW_TYPE_MESSAGE_Image_RECEIVED;
+        }
+        else {
             // If some other user sent the message
             return VIEW_TYPE_MESSAGE_RECEIVED;
         }
@@ -80,6 +101,13 @@ public class ConversationAdapter extends RecyclerView.Adapter{
                 break;
             case VIEW_TYPE_MESSAGE_RECEIVED:
                 ((RecieveViewHolder) holder).bind(message);
+                break;
+            case VIEW_TYPE_MESSAGE_Image_RECEIVED:
+                ((RecieveImageViewHolder) holder).bind(message);
+                break;
+            case VIEW_TYPE_MESSAGE_Image_SENT:
+                ((SendImageViewHolder) holder).bind(message);
+                break;
         }
     }
 
@@ -109,8 +137,30 @@ public class ConversationAdapter extends RecyclerView.Adapter{
         }
 
         public void bind(Message message) {
-            tvItemChatRightMessage.setText(message.getMessage());
+            if(!message.getType().equalsIgnoreCase("text") ){
+                String[] tenfile = message.getMessage().split("/");
+                tvItemChatRightMessage.setText(tenfile[tenfile.length-1]);
+            }else{
+                tvItemChatRightMessage.setText(message.getMessage());
+            }
+        }
+    }
+    public class SendImageViewHolder extends RecyclerView.ViewHolder{
+        public ImageView tvItemChatRightMessage;
+        public ImageView btnOption;
+        public CricleImage image;
+        ListFriendAdapter adapter;
+        private ItemClickListener itemClickListener;
 
+        public SendImageViewHolder(@NonNull View itemView) {
+            super(itemView);
+            tvItemChatRightMessage = itemView.findViewById(R.id.imgSend);
+//            image = itemView.findViewById(R.id.imgViewConversationPersonalSend);
+        }
+
+        public void bind(Message message) {
+            Log.d("Url file",message.getFileUrl());
+            Glide.with(context).load(message.getFileUrl()).into(tvItemChatRightMessage);
         }
     }
     public class RecieveViewHolder extends RecyclerView.ViewHolder{
@@ -127,7 +177,34 @@ public class ConversationAdapter extends RecyclerView.Adapter{
         }
 
         public void bind(Message message) {
-            tvItemChatLeftMessage.setText(message.getMessage());
+            if(!message.getType().equalsIgnoreCase("text")){
+                String[] tenfile = message.getMessage().split("/");
+                tvItemChatLeftMessage.setText(tenfile[tenfile.length-1]);
+            }else{
+                tvItemChatLeftMessage.setText(message.getMessage());
+            }
+
+        }
+    }
+    public class RecieveImageViewHolder extends RecyclerView.ViewHolder{
+        public ImageView tvItemChatRightMessage;
+        public ImageView btnOption;
+        public CricleImage image;
+        ListFriendAdapter adapter;
+        private ItemClickListener itemClickListener;
+
+        public RecieveImageViewHolder(@NonNull View itemView) {
+            super(itemView);
+            tvItemChatRightMessage = itemView.findViewById(R.id.imgReceive);
+//            image = itemView.findViewById(R.id.imgViewConversationPersonalSend);
+        }
+
+        public void bind(Message message) {
+            if(message.getFileUrl()!= null){
+                Log.d("Url file",message.getFileUrl());
+                Glide.with(context).load(message.getFileUrl()).into(tvItemChatRightMessage);
+            }
+
         }
     }
 }

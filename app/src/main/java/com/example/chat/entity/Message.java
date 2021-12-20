@@ -4,6 +4,15 @@ public class Message {
     private String id_send;
     private String type;
     private String message;
+    private String fileUrl;
+
+    public String getFileUrl() {
+        return fileUrl;
+    }
+
+    public void setFileUrl(String fileUrl) {
+        this.fileUrl = fileUrl;
+    }
 
     public String getId_send() {
         return id_send;

@@ -35,8 +35,8 @@ public class ProfileRequestAddFriendActivity extends AppCompatActivity {
     private ImageView imgProfileRequestAddFriendBack;
     private LinearLayout btnProfileRequestAddFriendAccept,btnProfileRequestAddFriendDeny;
 
-    private FirebaseAuth auth;
-    private FirebaseUser user;
+    private FirebaseAuth auth = FirebaseAuth.getInstance();
+    private FirebaseUser user = auth.getCurrentUser();
 
     private String id_user;
 
